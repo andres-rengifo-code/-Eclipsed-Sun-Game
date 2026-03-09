@@ -1,0 +1,26 @@
+.root {
+    -fx-background-color: black;
+}
+
+.button {
+    -fx-background-color: #ff8c00;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 15;
+}
+
+.button:hover {
+    -fx-background-color: #ff512f;
+}
+
+.label {
+    -fx-font-size: 20px;
+    -fx-text-fill: orange;
+    -fx-font-weight: bold;
+}
+
+.image-view{
+    -fx-border-color: white;
+    -fx-border-width: 3;
+
+}
