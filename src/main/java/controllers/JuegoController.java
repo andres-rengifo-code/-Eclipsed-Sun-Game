@@ -5,10 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import model.Palabra;
 import utilitis.GameData;
 import utilitis.Paths;
+
+import javafx.scene.image.Image;
+import java.awt.*;
 
 public class JuegoController {
 
@@ -48,6 +52,9 @@ public class JuegoController {
 
     @FXML
     private TextField casillaN3;
+
+    @FXML
+    private ImageView imagenJuegoVariable;
 
     private TextField[] casillas;
     private  int intentosFallidos =0;
@@ -111,6 +118,7 @@ public class JuegoController {
            casillas[posicion].clear();
            intentosFallidos++;
            System.out.println("Intentos fallidos: " + intentosFallidos + "/" + 5);
+           actualizarImagen();
 
        }
        if (juegoCompletado()){
@@ -130,6 +138,14 @@ public class JuegoController {
             if (!casillas[i].getStyle().contains("green")) return false;
         }
         return true;
+   }
+
+   private void actualizarImagen(){
+        String rutaImagenfallos = "/Imagenes/imagenIntentosFallidosNumero" + intentosFallidos +".png";
+       Image nuevaImagen = new Image(getClass().getResourceAsStream(rutaImagenfallos));
+       imagenJuegoVariable.setImage(nuevaImagen);
+
+
    }
 
 

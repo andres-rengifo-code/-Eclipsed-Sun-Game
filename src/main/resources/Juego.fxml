@@ -83,9 +83,9 @@
          </children>
       </HBox>
       <Label layoutX="40.0" layoutY="27.0" prefHeight="25.0" prefWidth="220.0" text="SOL ECLIPSADO" />
-      <ImageView fitHeight="147.0" fitWidth="157.0" layoutX="366.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imagenJuegoVariable" fitHeight="147.0" fitWidth="157.0" layoutX="366.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Imagenes/SOL.jpg" />
+            <Image url="@Imagenes/imagenIntentosFallidosNumero0.png" />
          </image>
       </ImageView>
       <Label layoutX="88.0" layoutY="188.0" prefHeight="61.0" prefWidth="182.0" text="ERRORES 0/5">
