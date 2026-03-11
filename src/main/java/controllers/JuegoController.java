@@ -13,6 +13,8 @@ import utilitis.Paths;
 
 import javafx.scene.image.Image;
 import java.awt.*;
+import javafx.scene.control.Label;
+
 
 public class JuegoController {
 
@@ -56,8 +58,18 @@ public class JuegoController {
     @FXML
     private ImageView imagenJuegoVariable;
 
+    @FXML
+    private Label cAyudas;
+
+    @FXML
+    private Label labelContadorErores;
+
+
     private TextField[] casillas;
     private  int intentosFallidos =0;
+    private  int contadorAyudas = 0;
+    private  int indice;
+
 
 
     @FXML
@@ -117,7 +129,7 @@ public class JuegoController {
        else{
            casillas[posicion].clear();
            intentosFallidos++;
-           System.out.println("Intentos fallidos: " + intentosFallidos + "/" + 5);
+           labelContadorErores.setText("ERRORES " + (intentosFallidos) + "/5");
            actualizarImagen();
 
        }
@@ -153,8 +165,20 @@ public class JuegoController {
 
     @FXML
     void ayudarJugador(ActionEvent event) {
+        if (contadorAyudas >= 3)
+            return;
+
+
+        Palabra palabra = App.app.getPalabra();
+        do {
+            indice =(int) (Math.random()*palabra.longitudPalabra());
+        }while (casillas[indice].getStyle().contains("green"));
+
+        casillas[indice].setText(String.valueOf(palabra.getContenidoPalabra().charAt(indice)));
+        casillas[indice].setStyle("-fx-background-color: green; -fx-text-fill: white;");
+        contadorAyudas++;
+        cAyudas.setText("" + (3 - contadorAyudas));
 
     }
-
 
 }
