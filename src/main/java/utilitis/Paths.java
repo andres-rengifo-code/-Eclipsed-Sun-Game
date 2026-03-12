@@ -7,9 +7,9 @@ public class Paths {
 
     public static final  String INSERT = "/Insert.fxml";
 
-    public static final  String JUEGO = "/Juego.fxml";
+    public static final  String JUEGO = "/Game.fxml";
 
-    public static final  String YOU_WIN = "/Youwin.fxml";
+    public static final  String YOU_WIN = "/finalScreen.fxml";
 
 
 
