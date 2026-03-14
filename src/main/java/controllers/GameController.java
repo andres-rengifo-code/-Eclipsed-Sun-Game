@@ -8,15 +8,14 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import model.Palabra;
-import utilitis.GameData;
+import model.GameData;
 import utilitis.Paths;
 
 import javafx.scene.image.Image;
-import java.awt.*;
 import javafx.scene.control.Label;
 
 
-public class JuegoController {
+public class GameController {
 
 
     @FXML
@@ -122,7 +121,7 @@ public class JuegoController {
        String textoIntroducidoUsuario =casillas[posicion].getText();
        char letraUsiarioIntrroducio = textoIntroducidoUsuario.charAt(0);
 
-       if (letrasPalabraAdivinar[posicion]== Character.toUpperCase(letraUsiarioIntrroducio)){
+       if (quitarTilde(letrasPalabraAdivinar[posicion])==quitarTilde(Character.toUpperCase(letraUsiarioIntrroducio))){
            casillas[posicion].setStyle("-fx-background-color: green; -fx-text-fill: white;");
            casillas[posicion].setEditable(false);
        }
@@ -158,6 +157,17 @@ public class JuegoController {
        imagenJuegoVariable.setImage(nuevaImagen);
 
 
+   }
+   private char quitarTilde(char letra){
+        return switch (letra){
+            case 'Á' -> 'A';
+            case 'É' -> 'E';
+            case 'Í' -> 'I';
+            case 'Ó' -> 'O';
+            case 'Ú' -> 'U';
+            default -> letra;
+
+        };
    }
 
 

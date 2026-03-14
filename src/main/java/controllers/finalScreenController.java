@@ -5,12 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import utilitis.GameData;
+import model.GameData;
 import utilitis.Paths;
 
-import java.nio.file.Path;
-
-public class Youwincontroller {
+public class finalScreenController {
 
     @FXML
     private ImageView ImagenFinDeJuego;
