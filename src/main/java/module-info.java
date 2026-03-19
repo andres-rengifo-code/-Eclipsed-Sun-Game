@@ -1,3 +1,8 @@
+/**
+ * This class represent the module configuration
+ * @author Andres Felipe Rengifo
+ * @author Alvaro Iván Ospina Capera
+ */
 module com.example.proyecto__sol__eclipsado {
     requires javafx.controls;
     requires javafx.fxml;

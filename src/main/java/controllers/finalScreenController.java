@@ -8,6 +8,12 @@ import javafx.scene.image.ImageView;
 import model.GameData;
 import utilitis.Paths;
 
+/**
+ * This class represent the controller for the final screen
+ * @author Andres Felipe Rengifo
+ * @author Alvaro Iván Ospina Capera
+ * @version 1.0
+ */
 public class finalScreenController {
 
     @FXML
@@ -15,6 +21,9 @@ public class finalScreenController {
 
 
 
+    /**
+     * This method initializes the controller and sets the appropriate image
+     */
     @FXML
     public void initialize(){
         if(GameData.jugadorGano){
@@ -30,7 +39,10 @@ public class finalScreenController {
 
 
 
-
+    /**
+     * This method handles the click on the "VOLVER A JUGAR" button
+     * @param event the action event
+     */
     @FXML
     void ReanudarJuegoJuegadorGano(ActionEvent event) {
         GameData.jugadorGano= false;

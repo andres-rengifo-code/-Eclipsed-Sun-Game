@@ -12,7 +12,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameController">
    <children>
-      <Button layoutX="459.0" layoutY="24.0" mnemonicParsing="false" onAction="#ayudarJugador" prefHeight="31.0" prefWidth="63.0" text="Ayuda" />
+      <Button layoutX="380.0" layoutY="24.0" mnemonicParsing="false" onAction="#mostrarReglas" prefHeight="31.0" prefWidth="70.0" style="-fx-background-color: #3498db;" text="Reglas" textFill="WHITE" />
+      <Button layoutX="459.0" layoutY="24.0" mnemonicParsing="false" onAction="#ayudarJugador" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #f39c12;" text="Ayuda" textFill="WHITE" />
       <HBox alignment="CENTER" layoutX="88.0" layoutY="117.0" prefHeight="43.0" prefWidth="425.0">
          <children>
             <Label text="*">
@@ -93,6 +94,6 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="cAyudas" layoutX="544.0" layoutY="31.0" text="3" />
+      <Label fx:id="cAyudas" layoutX="540.0" layoutY="31.0" text="3" textFill="WHITE" />
    </children>
 </AnchorPane>

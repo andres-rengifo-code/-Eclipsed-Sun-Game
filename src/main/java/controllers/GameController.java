@@ -10,11 +10,23 @@ import javafx.scene.input.KeyCode;
 import model.Palabra;
 import model.GameData;
 import utilitis.Paths;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import java.io.IOException;
 
 import javafx.scene.image.Image;
 import javafx.scene.control.Label;
 
 
+/**
+ * This class represent the controller for the main game screen
+ * @author Andres Felipe Rengifo
+ * @author Alvaro Iván Ospina Capera
+ * @version 1.0
+ */
 public class GameController {
 
 
@@ -71,6 +83,9 @@ public class GameController {
 
 
 
+    /**
+     * This method initializes the controller and sets up the game
+     */
     @FXML
     void initialize(){
         Palabra palabra = App.app.getPalabra();
@@ -85,7 +100,11 @@ public class GameController {
 
 
 
-   private void bloquearCasillasExtras(Palabra palabra){
+    /**
+     * This method disables and hides extra text fields
+     * @param palabra the secret word object
+     */
+    private void bloquearCasillasExtras(Palabra palabra){
        int longitud = palabra.longitudPalabra();
             for (int i= longitud; i <12; i++) {
                 casillas[i].setDisable(true);
@@ -93,7 +112,11 @@ public class GameController {
             }
     }
 
-   private void configurarCasillas(Palabra palabra){
+    /**
+     * This method configures the behavior of each text field
+     * @param palabra the secret word object
+     */
+    private void configurarCasillas(Palabra palabra){
         for(int i = 0; i< palabra.longitudPalabra(); i++){
             int posicion =i;
 
@@ -105,8 +128,9 @@ public class GameController {
             }));
 
 
-            casillas[i].setOnKeyPressed(event -> {
-                if (event.getCode() == KeyCode.ENTER) {
+            casillas[i].setOnKeyTyped(event -> {
+                String textoActual = casillas[posicion].getText();
+                if (!textoActual.isEmpty()) {
                     verificarLetra(posicion);
                 }
             } );
@@ -114,6 +138,10 @@ public class GameController {
         }
 
    }
+    /**
+     * This method verifies if the entered letter matches the secret word
+     * @param position the position of the letter in the word
+     */
    private void verificarLetra(int posicion){
        Palabra palabra = App.app.getPalabra();
        char[] letrasPalabraAdivinar = palabra.getContenidoPalabra().toCharArray();
@@ -143,6 +171,10 @@ public class GameController {
 
    }
 
+    /**
+     * This method checks if the game has been completed
+     * @return boolean true if all letters are correct
+     */
    private boolean juegoCompletado(){
         Palabra palabra = App.app.getPalabra();
         for (int i = 0; i<palabra.longitudPalabra();i++){
@@ -151,6 +183,9 @@ public class GameController {
         return true;
    }
 
+    /**
+     * This method updates the sun image based on the number of errors
+     */
    private void actualizarImagen(){
         String rutaImagenfallos = "/Imagenes/imagenIntentosFallidosNumero" + intentosFallidos +".png";
        Image nuevaImagen = new Image(getClass().getResourceAsStream(rutaImagenfallos));
@@ -158,7 +193,12 @@ public class GameController {
 
 
    }
-   private char quitarTilde(char letra){
+    /**
+     * This method removes accents from a letter
+     * @param letter the letter to process
+     * @return char the letter without accent
+     */
+    private char quitarTilde(char letra){
         return switch (letra){
             case 'Á' -> 'A';
             case 'É' -> 'E';
@@ -173,7 +213,11 @@ public class GameController {
 
 
 
-    @FXML
+    /**
+     * This method provides help by revealing a random letter
+     * @param event the action event
+     */
+   @FXML
     void ayudarJugador(ActionEvent event) {
         if (contadorAyudas >= 3)
             return;
@@ -189,6 +233,36 @@ public class GameController {
         contadorAyudas++;
         cAyudas.setText("" + (3 - contadorAyudas));
 
+    }
+
+    /**
+     * This method shows the rules window
+     * @param event the action event
+     */
+    @FXML
+    void mostrarReglas(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reglas.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Reglas del Juego");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+
+            // Centrar la ventana respecto a la ventana principal
+            stage.initOwner(casillas[0].getScene().getWindow());
+            stage.setOnShown(e -> {
+                stage.setX((stage.getOwner().getX() + stage.getOwner().getWidth() / 2) - stage.getWidth() / 2);
+                stage.setY((stage.getOwner().getY() + stage.getOwner().getHeight() / 2) - stage.getHeight() / 2);
+            });
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
