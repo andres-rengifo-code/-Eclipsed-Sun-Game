@@ -10,17 +10,17 @@ import javafx.stage.Stage;
  * @author Alvaro Iván Ospina Capera
  * @version 1.0
  */
-public class ReglasController {
+public class RulesController {
 
     @FXML
-    private Button btnCerrar;
+    private Button closeButton;
 
     /**
      * This method closes the rules window
      */
     @FXML
-    private void cerrarVentana() {
-        Stage stage = (Stage) btnCerrar.getScene().getWindow();
+    private void onCloseWindow() {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
 }

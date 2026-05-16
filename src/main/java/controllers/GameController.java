@@ -6,9 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import model.Palabra;
 import model.GameData;
+import model.Word;
 import utilitis.Paths;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,55 +30,55 @@ public class GameController {
 
 
     @FXML
-    private TextField casillaN10;
+    private TextField slot10;
 
     @FXML
-    private TextField casillaN11;
+    private TextField slot11;
 
     @FXML
-    private TextField casillaN12;
+    private TextField slot12;
 
     @FXML
-    private TextField casillaN2;
+    private TextField slot2;
 
     @FXML
-    private TextField casillaN4;
+    private TextField slot4;
 
     @FXML
-    private TextField casillaN5;
+    private TextField slot5;
 
     @FXML
-    private TextField casillaN6;
+    private TextField slot6;
 
     @FXML
-    private TextField casillaN7;
+    private TextField slot7;
 
     @FXML
-    private TextField casillaN8;
+    private TextField slot8;
 
     @FXML
-    private TextField casillaN9;
+    private TextField slot9;
 
     @FXML
-    private TextField casillaN1;
+    private TextField slot1;
 
     @FXML
-    private TextField casillaN3;
+    private TextField slot3;
 
     @FXML
-    private ImageView imagenJuegoVariable;
+    private ImageView gameImageView;
 
     @FXML
-    private Label cAyudas;
+    private Label helpLabel;
 
     @FXML
-    private Label labelContadorErores;
+    private Label errorCounterLabel;
 
 
-    private TextField[] casillas;
-    private  int intentosFallidos =0;
-    private  int contadorAyudas = 0;
-    private  int indice;
+    private TextField[] slots;
+    private  int failedAttempts =0;
+    private  int helpCounter = 0;
+    private  int randomIndex;
 
 
 
@@ -88,12 +87,12 @@ public class GameController {
      */
     @FXML
     void initialize(){
-        Palabra palabra = App.app.getPalabra();
-        casillas = new TextField[]{casillaN1,casillaN2,casillaN3,casillaN4,casillaN5,casillaN6,casillaN7,casillaN8,casillaN9,casillaN10,casillaN11,casillaN12};
+        Word word = App.app.getWord();
+        slots = new TextField[]{slot1,slot2, slot3,slot4,slot5,slot6,slot7, slot8, slot9,slot10, slot11, slot12};
 
 
-        bloquearCasillasExtras(palabra);
-        configurarCasillas(palabra);
+        disableExtraSlots(word);
+        configureSlots(word);
 
 
     }
@@ -104,34 +103,34 @@ public class GameController {
      * This method disables and hides extra text fields
      * @param palabra the secret word object
      */
-    private void bloquearCasillasExtras(Palabra palabra){
-       int longitud = palabra.longitudPalabra();
-            for (int i= longitud; i <12; i++) {
-                casillas[i].setDisable(true);
-                casillas[i].setVisible(false);
+    private void disableExtraSlots(Word word){
+        int length = word.getLength();
+            for (int i= length; i <12; i++) {
+                slots[i].setDisable(true);
+                slots[i].setVisible(false);
             }
     }
 
     /**
      * This method configures the behavior of each text field
-     * @param palabra the secret word object
+     * @param word the secret word object
      */
-    private void configurarCasillas(Palabra palabra){
-        for(int i = 0; i< palabra.longitudPalabra(); i++){
-            int posicion =i;
+    private void configureSlots(Word word){
+        for(int i = 0; i<  word.getLength(); i++){
+            int position =i;
 
-            casillas[i].setTextFormatter(new TextFormatter<>(change -> {
-                String confirmarLetraCasilla = change.getControlNewText();
-                if (confirmarLetraCasilla.length()>1) return null;
-                if(!confirmarLetraCasilla.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ]*"))return null;
+            slots[i].setTextFormatter(new TextFormatter<>(change -> {
+                String newText = change.getControlNewText();
+                if (newText.length()>1) return null;
+                if(!newText.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ]*"))return null;
                 return change;
             }));
 
 
-            casillas[i].setOnKeyTyped(event -> {
-                String textoActual = casillas[posicion].getText();
-                if (!textoActual.isEmpty()) {
-                    verificarLetra(posicion);
+            slots[i].setOnKeyTyped(event -> {
+                String text = slots[position].getText();
+                if (!text.isEmpty()) {
+                    checkLetter(position);
                 }
             } );
 
@@ -140,32 +139,32 @@ public class GameController {
    }
     /**
      * This method verifies if the entered letter matches the secret word
-     * @param position the position of the letter in the word
+     * @param posicion the position of the letter in the word
      */
-   private void verificarLetra(int posicion){
-       Palabra palabra = App.app.getPalabra();
-       char[] letrasPalabraAdivinar = palabra.getContenidoPalabra().toCharArray();
+   private void checkLetter(int position){
+       Word word = App.app.getWord();
+       char[] wordLetters = word.getContent().toCharArray();
 
-       String textoIntroducidoUsuario =casillas[posicion].getText();
-       char letraUsiarioIntrroducio = textoIntroducidoUsuario.charAt(0);
+       String userText = slots[position].getText();
+       char userLetter = userText.charAt(0);
 
-       if (quitarTilde(letrasPalabraAdivinar[posicion])==quitarTilde(Character.toUpperCase(letraUsiarioIntrroducio))){
-           casillas[posicion].setStyle("-fx-background-color: green; -fx-text-fill: white;");
-           casillas[posicion].setEditable(false);
+       if (removeAccent(wordLetters[position]) == removeAccent(Character.toUpperCase(userLetter))){
+           slots[position].setStyle("-fx-background-color: green; -fx-text-fill: white;");
+           slots[position].setEditable(false);
        }
        else{
-           casillas[posicion].clear();
-           intentosFallidos++;
-           labelContadorErores.setText("ERRORES " + (intentosFallidos) + "/5");
-           actualizarImagen();
+           slots[position].clear();
+           failedAttempts++;
+           errorCounterLabel.setText("ERRORS  " + (failedAttempts) + "/5");
+           updateImage();
 
        }
-       if (juegoCompletado()){
-           GameData.jugadorGano = true;
+       if (isGameCompleted()){
+           GameData.playerWon = true;
            App.app.setScene(Paths.YOU_WIN);
        }
-       if (intentosFallidos >= 5){
-           GameData.jugadorGano = false;
+       if (failedAttempts >= 5){
+           GameData.playerWon = false;
            App.app.setScene(Paths.YOU_WIN);
        }
 
@@ -175,10 +174,10 @@ public class GameController {
      * This method checks if the game has been completed
      * @return boolean true if all letters are correct
      */
-   private boolean juegoCompletado(){
-        Palabra palabra = App.app.getPalabra();
-        for (int i = 0; i<palabra.longitudPalabra();i++){
-            if (!casillas[i].getStyle().contains("green")) return false;
+   private boolean isGameCompleted(){
+       Word word = App.app.getWord();
+        for (int i = 0; i<word.getLength();i++){
+            if (!slots[i].getStyle().contains("green")) return false;
         }
         return true;
    }
@@ -186,10 +185,10 @@ public class GameController {
     /**
      * This method updates the sun image based on the number of errors
      */
-   private void actualizarImagen(){
-        String rutaImagenfallos = "/Imagenes/imagenIntentosFallidosNumero" + intentosFallidos +".png";
-       Image nuevaImagen = new Image(getClass().getResourceAsStream(rutaImagenfallos));
-       imagenJuegoVariable.setImage(nuevaImagen);
+   private void updateImage(){
+        String imagePath = "/Images/failedAttemptImage" + failedAttempts +".png";
+       Image newImage = new Image(getClass().getResourceAsStream(imagePath));
+       gameImageView.setImage(newImage);
 
 
    }
@@ -198,14 +197,14 @@ public class GameController {
      * @param letter the letter to process
      * @return char the letter without accent
      */
-    private char quitarTilde(char letra){
-        return switch (letra){
+    private char removeAccent(char letter){
+        return switch (letter){
             case 'Á' -> 'A';
             case 'É' -> 'E';
             case 'Í' -> 'I';
             case 'Ó' -> 'O';
             case 'Ú' -> 'U';
-            default -> letra;
+            default -> letter;
 
         };
    }
@@ -218,20 +217,20 @@ public class GameController {
      * @param event the action event
      */
    @FXML
-    void ayudarJugador(ActionEvent event) {
-        if (contadorAyudas >= 3)
+    void onHelp(ActionEvent event) {
+        if (helpCounter >= 3)
             return;
 
 
-        Palabra palabra = App.app.getPalabra();
+       Word word = App.app.getWord();
         do {
-            indice =(int) (Math.random()*palabra.longitudPalabra());
-        }while (casillas[indice].getStyle().contains("green"));
+            randomIndex =(int) (Math.random()*word.getLength());
+        }while (slots[randomIndex].getStyle().contains("green"));
 
-        casillas[indice].setText(String.valueOf(palabra.getContenidoPalabra().charAt(indice)));
-        casillas[indice].setStyle("-fx-background-color: green; -fx-text-fill: white;");
-        contadorAyudas++;
-        cAyudas.setText("" + (3 - contadorAyudas));
+       slots[randomIndex].setText(String.valueOf(word.getContent().charAt(randomIndex)));
+       slots[randomIndex].setStyle("-fx-background-color: green; -fx-text-fill: white;");
+        helpCounter++;
+       helpLabel.setText("" + (3 - helpCounter));
 
     }
 
@@ -240,19 +239,19 @@ public class GameController {
      * @param event the action event
      */
     @FXML
-    void mostrarReglas(ActionEvent event) {
+    void onShowRules(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reglas.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Rules.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("Reglas del Juego");
+            stage.setTitle("Game Rules");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
 
             // Centrar la ventana respecto a la ventana principal
-            stage.initOwner(casillas[0].getScene().getWindow());
+            stage.initOwner(slots[0].getScene().getWindow());
             stage.setOnShown(e -> {
                 stage.setX((stage.getOwner().getX() + stage.getOwner().getWidth() / 2) - stage.getWidth() / 2);
                 stage.setY((stage.getOwner().getY() + stage.getOwner().getHeight() / 2) - stage.getHeight() / 2);

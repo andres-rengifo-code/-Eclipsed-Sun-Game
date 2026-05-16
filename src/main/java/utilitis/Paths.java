@@ -13,11 +13,11 @@ public class Paths {
 
     public static final  String INSERT = "/Insert.fxml";
 
-    public static final  String JUEGO = "/Game.fxml";
+    public static final  String GAME = "/Game.fxml";
 
-    public static final  String YOU_WIN = "/finalScreen.fxml";
+    public static final  String YOU_WIN = "/FinalScreen.fxml";
 
-    public static final String REGLAS = "/Reglas.fxml";
+    public static final String RULES = "/Rules.fxml";
 
 
 

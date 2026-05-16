@@ -12,8 +12,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameController">
    <children>
-      <Button layoutX="380.0" layoutY="24.0" mnemonicParsing="false" onAction="#mostrarReglas" prefHeight="31.0" prefWidth="70.0" style="-fx-background-color: #3498db;" text="Reglas" textFill="WHITE" />
-      <Button layoutX="459.0" layoutY="24.0" mnemonicParsing="false" onAction="#ayudarJugador" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #f39c12;" text="Ayuda" textFill="WHITE" />
+      <Button layoutX="380.0" layoutY="24.0" mnemonicParsing="false" onAction="#onShowRules" prefHeight="31.0" prefWidth="70.0" style="-fx-background-color: #3498db;" text="Reglas" textFill="WHITE" />
+      <Button layoutX="459.0" layoutY="24.0" mnemonicParsing="false" onAction="#onHelp" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #f39c12;" text="Ayuda" textFill="WHITE" />
       <HBox alignment="CENTER" layoutX="88.0" layoutY="117.0" prefHeight="43.0" prefWidth="425.0">
          <children>
             <Label text="*">
@@ -21,62 +21,62 @@
                   <Insets right="10.0" />
                </padding>
             </Label>
-            <TextField fx:id="casillaN1" alignment="CENTER">
+            <TextField fx:id="slot1" alignment="CENTER">
                <HBox.margin>
                   <Insets right="4.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="casillaN2" layoutX="17.0" layoutY="10.0">
+            <TextField fx:id="slot2" layoutX="17.0" layoutY="10.0">
                <HBox.margin>
                   <Insets right="4.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="casillaN3" layoutX="166.0" layoutY="10.0">
+            <TextField fx:id="slot3" layoutX="166.0" layoutY="10.0">
                <HBox.margin>
                   <Insets right="4.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="casillaN4" layoutX="295.0" layoutY="10.0">
+            <TextField fx:id="slot4" layoutX="295.0" layoutY="10.0">
                <HBox.margin>
                   <Insets right="4.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="casillaN5" layoutX="225.0" layoutY="10.0">
+            <TextField fx:id="slot5" layoutX="225.0" layoutY="10.0">
                <HBox.margin>
                   <Insets right="4.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="casillaN6" layoutX="267.0" layoutY="10.0">
+            <TextField fx:id="slot6" layoutX="267.0" layoutY="10.0">
                <HBox.margin>
                   <Insets right="4.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="casillaN7" layoutX="225.0" layoutY="10.0">
+            <TextField fx:id="slot7" layoutX="225.0" layoutY="10.0">
                <HBox.margin>
                   <Insets right="4.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="casillaN8" layoutX="195.0" layoutY="10.0">
+            <TextField fx:id="slot8" layoutX="195.0" layoutY="10.0">
                <HBox.margin>
                   <Insets right="4.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="casillaN9" layoutX="173.0" layoutY="10.0">
+            <TextField fx:id="slot9" layoutX="173.0" layoutY="10.0">
                <HBox.margin>
                   <Insets right="4.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="casillaN10" layoutX="155.0" layoutY="10.0">
+            <TextField fx:id="slot10" layoutX="155.0" layoutY="10.0">
                <HBox.margin>
                   <Insets right="4.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="casillaN11" layoutX="141.0" layoutY="10.0">
+            <TextField fx:id="slot11" layoutX="141.0" layoutY="10.0">
                <HBox.margin>
                   <Insets right="4.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="casillaN12" layoutX="131.0" layoutY="10.0">
+            <TextField fx:id="slot12" layoutX="131.0" layoutY="10.0">
                <HBox.margin>
                   <Insets right="4.0" />
                </HBox.margin>
@@ -84,16 +84,16 @@
          </children>
       </HBox>
       <Label layoutX="40.0" layoutY="27.0" prefHeight="25.0" prefWidth="220.0" text="SOL ECLIPSADO" />
-      <ImageView fx:id="imagenJuegoVariable" fitHeight="147.0" fitWidth="157.0" layoutX="366.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="gameImageView" fitHeight="147.0" fitWidth="157.0" layoutX="366.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Imagenes/imagenIntentosFallidosNumero0.png" />
          </image>
       </ImageView>
-      <Label fx:id="labelContadorErores" layoutX="88.0" layoutY="238.0" prefHeight="61.0" prefWidth="182.0" text="ERRORES 0/5">
+      <Label fx:id="errorCounterLabel" layoutX="88.0" layoutY="238.0" prefHeight="61.0" prefWidth="182.0" text="ERRORES 0/5">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="cAyudas" layoutX="540.0" layoutY="31.0" text="3" textFill="WHITE" />
+      <Label fx:id="helpLabel" layoutX="540.0" layoutY="31.0" text="3" textFill="WHITE" />
    </children>
 </AnchorPane>

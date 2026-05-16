@@ -5,7 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
-import model.Palabra;
+import model.Word;
 import utilitis.Paths;
 
 /**
@@ -18,17 +18,17 @@ public class InsertController {
 
     /** Text field for entering the secret word */
     @FXML
-    private TextField palabraJuego;
+    private TextField wordTextField;
 
     /**
      * This method initializes the controller and configures the text field
      */
     @FXML
     void initialize(){
-        palabraJuego.setTextFormatter(new TextFormatter<>(change -> {
-            String palabraAdivinar = change.getControlNewText();
-            if (palabraAdivinar.length()>12) return null;
-            if(!palabraAdivinar.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ]*"))return null;
+        wordTextField.setTextFormatter(new TextFormatter<>(change -> {
+            String wordToGuess = change.getControlNewText();
+            if (wordToGuess.length()>12) return null;
+            if(!wordToGuess.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ]*"))return null;
             return change;
         }));
     }
@@ -40,19 +40,19 @@ public class InsertController {
      */
 
     @FXML
-    void empezarJuego(ActionEvent event) {
-        Palabra palabra = App.app.getPalabra();
-        palabra.setContenidoPalabra(palabraJuego.getText());
+    void onStartGame(ActionEvent event) {
+        Word word = App.app.getWord();
+        word.setContent(wordTextField.getText());
 
 
-        if(!palabra.validaPalabra()) {
-            palabraJuego.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-            palabraJuego.clear();
-            palabraJuego.setPromptText("Palabra entre 6 y 12 letras");
+        if(!word.isValid()) {
+            wordTextField.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
+            wordTextField.clear();
+            wordTextField.setPromptText("Word between 6 and 12 letters");
             return;
         }
-        System.out.println(palabra);
-        App.app.setScene(Paths.JUEGO);
+        System.out.println(word);
+        App.app.setScene(Paths.GAME);
     }
 
 }

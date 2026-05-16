@@ -20,9 +20,9 @@
         <RowConstraints maxHeight="149.0" minHeight="0.0" prefHeight="82.0" valignment="CENTER" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Button mnemonicParsing="false" onAction="#clickComenzar" prefHeight="50.0" prefWidth="150.0" text="Comenzar Juego" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-        <Button mnemonicParsing="false" onAction="#clickReglas" prefHeight="50.0" prefWidth="150.0" text="Reglas" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-        <Button mnemonicParsing="false" onAction="#clickSalir" prefHeight="50.0" prefWidth="150.0" text="Salir Del Juego" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+        <Button mnemonicParsing="false" onAction="#onClickStart" prefHeight="50.0" prefWidth="150.0" text="Comenzar Juego" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+        <Button mnemonicParsing="false" onAction="#onClickRules" prefHeight="50.0" prefWidth="150.0" text="Reglas" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+        <Button mnemonicParsing="false" onAction="#onClickExit" prefHeight="50.0" prefWidth="150.0" text="Salir Del Juego" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
         <ImageView fitHeight="189.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
             <image>
                 <Image url="@Imagenes/SOL.jpg" />

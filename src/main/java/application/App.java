@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Palabra;
+import model.Word;
 import utilitis.Paths;
 
 import java.io.IOException;
@@ -16,12 +16,11 @@ import java.io.IOException;
  * @author Alvaro Iván Ospina Capera
  * @version 1.0
  */
-
 public class App extends Application {
 
     public static App app;
     private Stage stageWindows;
-    private Palabra palabra = new Palabra();
+    private Word word = new Word();
 
     /**
      * This method executes the launch of the JavaFX application
@@ -47,8 +46,8 @@ public class App extends Application {
      * This method gets the secret word object
      * @return Palabra the secret word
      */
-    public Palabra getPalabra() {
-        return palabra;
+    public Word getWord() {
+        return word;
     }
 
     /**

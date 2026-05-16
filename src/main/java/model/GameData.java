@@ -7,6 +7,6 @@ package model;
  * @version 1.0
  */
 public class GameData {
-    public static boolean jugadorGano =false;
+    public static boolean playerWon =false;
 
 }

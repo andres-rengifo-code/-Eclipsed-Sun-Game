@@ -25,7 +25,7 @@ public class StartController {
      * @param event the action event
      */
     @FXML
-    void clickComenzar(ActionEvent event) {
+    void onClickStart(ActionEvent event) {
         App.app.setScene(Paths.INSERT);
 
     }
@@ -35,7 +35,7 @@ public class StartController {
      * @param event the action event
      */
     @FXML
-    void clickSalir(ActionEvent event) {
+    void onClickExit(ActionEvent event) {
         System.exit(0);
 
     }
@@ -45,13 +45,13 @@ public class StartController {
      * @param event the action event
      */
     @FXML
-    void clickReglas(ActionEvent event) {
+    void onClickRules(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reglas.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Rules.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("Reglas del Juego");
+            stage.setTitle("Game Rules");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);

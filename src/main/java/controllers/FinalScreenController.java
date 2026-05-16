@@ -14,10 +14,10 @@ import utilitis.Paths;
  * @author Alvaro Iván Ospina Capera
  * @version 1.0
  */
-public class finalScreenController {
+public class FinalScreenController {
 
     @FXML
-    private ImageView ImagenFinDeJuego;
+    private ImageView finalGameImageView;
 
 
 
@@ -26,11 +26,11 @@ public class finalScreenController {
      */
     @FXML
     public void initialize(){
-        if(GameData.jugadorGano){
-            ImagenFinDeJuego.setImage(new Image(getClass().getResourceAsStream("/Imagenes/ECE_YOU_WIN.jpg"))
+        if(GameData.playerWon){
+            finalGameImageView.setImage(new Image(getClass().getResourceAsStream("/Images/ECE_YOU_WIN.jpg"))
             );
         }else {
-            ImagenFinDeJuego.setImage(new Image(getClass().getResourceAsStream("/Imagenes/ECE_GAME_OVER.jpg"))
+            finalGameImageView.setImage(new Image(getClass().getResourceAsStream("/Images/ECE_GAME_OVER.jpg"))
             );
         }
 
@@ -44,8 +44,8 @@ public class finalScreenController {
      * @param event the action event
      */
     @FXML
-    void ReanudarJuegoJuegadorGano(ActionEvent event) {
-        GameData.jugadorGano= false;
+    void onPlayAgain(ActionEvent event) {
+        GameData.playerWon = false;
         App.app.setScene(Paths.START);
 
     }
